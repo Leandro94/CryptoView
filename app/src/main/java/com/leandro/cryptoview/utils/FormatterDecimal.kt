@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.util
+package com.leandro.cryptoview.utils
 
 import java.math.BigDecimal
 import java.math.RoundingMode

@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.model.entity
+package com.leandro.cryptoview.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

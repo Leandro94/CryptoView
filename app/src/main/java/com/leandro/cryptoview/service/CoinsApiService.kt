@@ -1,9 +1,9 @@
 package com.leandro.cryptoview.service
 
 import com.leandro.cryptoview.model.CryptoResult
-import com.leandro.cryptoview.util.BASE_URL
-import com.leandro.cryptoview.util.KEY
-import com.leandro.cryptoview.util.KEY_VALUE
+import com.leandro.cryptoview.utils.BASE_URL
+import com.leandro.cryptoview.utils.KEY
+import com.leandro.cryptoview.utils.KEY_VALUE
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

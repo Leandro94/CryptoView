@@ -1,17 +1,19 @@
 package com.leandro.cryptoview.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro.cryptoview.R
-import com.leandro.cryptoview.adapter.CoinsListAdapter
+import com.leandro.cryptoview.view.adapters.CoinsListAdapter
 import com.leandro.cryptoview.service.AppDatabase
-import com.leandro.cryptoview.model.entity.Coin
-import com.leandro.cryptoview.model.repository.CoinRepository
+import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.repository.CoinRepository
 import com.leandro.cryptoview.viewmodel.ListViewModel
 import com.leandro.cryptoview.viewmodel.ListViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -72,17 +74,6 @@ class ListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when(item.itemId){
-            R.id.nav_search->{
-
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -97,7 +88,6 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = coinsListAdapter
         }
-        refreshList()
 
         refreshLayout.setOnRefreshListener {
             refreshList()
@@ -109,9 +99,9 @@ class ListFragment : Fragment() {
         coinsListRecycler.visibility = View.GONE
         txt_ListError.visibility = View.GONE
         progressLoadList.visibility = View.VISIBLE
+
         viewModel.refresh()
         refreshLayout.isRefreshing = false
-
     }
 
     fun observeViewModel() {

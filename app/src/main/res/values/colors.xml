@@ -8,4 +8,8 @@
     <color name="colorNegativeValue">#DF0909</color>
     <color name="colorCardView">#858F8B8B</color>
     <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorLineChart">#4A4848</color>
+    <color name="textColor">#C1C1C1</color>
+    <color name="colorBarChart">#BF3030</color>
 </resources>

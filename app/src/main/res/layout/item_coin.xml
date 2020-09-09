@@ -44,12 +44,50 @@
                 android:layout_marginLeft="8dp"
                 android:background="#00FFFFFF">
 
+                <ImageView
+                    android:id="@+id/imv_situation24h"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_percentSymbol24h"
+                    app:srcCompat="@drawable/ic_trending_up_green_24" />
+
+                <TextView
+                    android:id="@+id/txt_percentSymbol24h"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:text="%"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_value24h" />
+
+                <TextView
+                    android:id="@+id/txt_value24h"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="0.00"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_24H" />
+
+                <TextView
+                    android:id="@+id/txt_24H"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="24H"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imv_situation" />
+
                 <TextView
                     android:id="@+id/txt_1H"
                     style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
                     android:text="1H"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -101,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="10,000"
+                    android:text="0.00"
                     app:layout_constraintBottom_toTopOf="@+id/txt_value1h"
                     app:layout_constraintStart_toEndOf="@+id/txt_real"
                     app:layout_constraintTop_toBottomOf="@+id/txt_coinName"

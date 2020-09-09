@@ -1,8 +1,6 @@
-package com.leandro.cryptoview.util
+package com.leandro.cryptoview.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable

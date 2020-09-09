@@ -1,40 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:background="@drawable/background"
-        tools:context=".view.DetailFragment"
-        android:layout_marginTop="?attr/actionBarSize">
+        tools:context=".view.DetailFragment">
+
+        <TextView
+            android:id="@+id/txt_d_coinName"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Name"
+            app:layout_constraintStart_toEndOf="@+id/txt_d_dividerItem"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_d_dividerItem"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="|"
+            app:layout_constraintStart_toEndOf="@+id/txt_d_coinSymbol"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imv_d_coin"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_image_grey_24"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/txt_d_name"
-            style="@style/Text"
+            android:id="@+id/txt_d_coinSymbol"
+            style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:text="Symbol"
+            app:layout_constraintStart_toEndOf="@+id/imv_d_coin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imv_d_coin" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</layout>
+</ScrollView>

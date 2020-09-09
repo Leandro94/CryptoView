@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.util
+package com.leandro.cryptoview.utils
 
 const val DATABASE_NAME = "cryptoviewDatabase"
 const val BASE_URL = "https://pro-api.coinmarketcap.com"

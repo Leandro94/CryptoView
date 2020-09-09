@@ -2,7 +2,7 @@ package com.leandro.cryptoview.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.leandro.cryptoview.model.repository.CoinRepository
+import com.leandro.cryptoview.repository.CoinRepository
 
 class ListViewModelFactory(private val repository: CoinRepository) : ViewModelProvider.NewInstanceFactory()  {
 

@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.adapter
+package com.leandro.cryptoview.view.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -9,16 +9,14 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro.cryptoview.R
-import com.leandro.cryptoview.model.entity.Coin
-import com.leandro.cryptoview.util.IMAGE_URL
-import com.leandro.cryptoview.util.formatterToDecimal
-import com.leandro.cryptoview.util.getProgressDrawable
-import com.leandro.cryptoview.util.loadImage
+import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.utils.IMAGE_URL
+import com.leandro.cryptoview.utils.formatterToDecimal
+import com.leandro.cryptoview.utils.getProgressDrawable
+import com.leandro.cryptoview.utils.loadImage
 import com.leandro.cryptoview.view.ListFragmentDirections
 import kotlinx.android.synthetic.main.item_coin.view.*
 import java.lang.Exception
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 class CoinsListAdapter(val coinList: ArrayList<Coin>) :
     RecyclerView.Adapter<CoinsListAdapter.CoinViewHolder>() {
@@ -45,9 +43,16 @@ class CoinsListAdapter(val coinList: ArrayList<Coin>) :
             formatterToDecimal(it,
                 2).toString()
         }
+        holder.view.txt_value24h.text = coinList[position].percent_change_24h?.let {
+            formatterToDecimal(it,
+                2).toString()
+        }
         formatterStyle(holder.view.txt_value1h,
             holder.view.txt_percentSymbol,
             holder.view.imv_situation)
+        formatterStyle(holder.view.txt_value24h,
+            holder.view.txt_percentSymbol24h,
+            holder.view.imv_situation24h)
 
 
         holder.view.txt_priceBRL.text =
@@ -61,7 +66,6 @@ class CoinsListAdapter(val coinList: ArrayList<Coin>) :
         }
     }
 
-
     fun formatterStyle(txt_valor: TextView, txt_percentSymbol: TextView, imv: ImageView) {
         try {
             if (txt_valor.text.toString().contains("-")) {
@@ -73,7 +77,6 @@ class CoinsListAdapter(val coinList: ArrayList<Coin>) :
                 txt_percentSymbol.setTextColor(Color.parseColor("#32CD32"))
                 imv.setImageResource(R.drawable.ic_trending_up_green_24)
             }
-
 
         } catch (e: Exception) {
             e.printStackTrace()

@@ -1,7 +1,7 @@
-package com.leandro.cryptoview.model.repository
+package com.leandro.cryptoview.repository
 
 import com.leandro.cryptoview.service.CoinDao
-import com.leandro.cryptoview.model.entity.Coin
+import com.leandro.cryptoview.model.Coin
 
 class CoinRepository(private val coinDao: CoinDao) {
     suspend fun getAll() = coinDao.getAll()
