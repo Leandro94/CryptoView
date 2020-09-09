@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cryptoview_navigation"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.leandro.cryptoview.view.ListFragment"
+        android:label="Criptomoedas">
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_chartFragment"
+            app:destination="@id/chartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.leandro.cryptoview.view.DetailFragment"
+        android:label="Detalhes">
+        <action
+            android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="cryptocurrencyId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.leandro.cryptoview.view.ChartFragment"
+        android:label="Mais negociadas"
+        tools:layout="@layout/fragment_chart">
+        <action
+            android:id="@+id/action_chartFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+</navigation>
