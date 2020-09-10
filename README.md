@@ -8,7 +8,6 @@
 
 Esse projeto foi desenvolvido em Kotlin, utilizando os seguintes recursos da linguagem:
 
-- Arquitetura MVVM
 - Navigation
 - Room
 - Data Binding
