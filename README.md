@@ -1,5 +1,5 @@
 <h1 align="center">
-   CriptoView
+   CryptoView
 </h1>
 
 
