@@ -3,9 +3,9 @@
 </h1>
 
 <p align="center">
-  <img alt="splash" src=".github/splash.jpg" width="30%" heigth"30%">
-  <img alt="list" src=".github/list.jpg" width="30%">
-  <img alt="detail" src=".github/details.jpg" width="30%">
+  <img alt="splash" src=".github/splash.jpg" width="25%">
+  <img alt="list" src=".github/list.jpg" width="25%">
+  <img alt="detail" src=".github/details.jpg" width="25%">
 </p>
 
 ## 🚀 Tecnologias
