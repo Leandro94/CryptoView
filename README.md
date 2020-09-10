@@ -1,6 +1,6 @@
-<strong align="center">
+<h1 align="center">
    CryptoView
-</strong>
+</h1>
 
 
 
