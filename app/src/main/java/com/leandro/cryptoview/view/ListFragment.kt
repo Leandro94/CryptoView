@@ -21,7 +21,6 @@ import java.util.*
 
 class ListFragment : Fragment() {
 
-    //private val viewModel: ListViewModel by viewModel()
     private lateinit var viewModel: ListViewModel
     private val coinsListAdapter = CoinsListAdapter(arrayListOf())
     lateinit var db: AppDatabase
@@ -116,7 +115,7 @@ class ListFragment : Fragment() {
         viewModel.coinsLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
                 if(it){
-                    Toast.makeText(activity, "Não foi possível conectar ao serviço. Dados da última conexão foram utilizados!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Não foi possível conectar ao serviço. Dados da última conexão serão utilizados caso existam.", Toast.LENGTH_LONG).show()
                 }
                 else{
                     Toast.makeText(activity, "Dados atualizados com sucesso.", Toast.LENGTH_SHORT).show()
