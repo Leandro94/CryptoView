@@ -5,9 +5,6 @@
 <p align="center">
   <img alt="splash" src=".github/splash.jpg" width="30%">
   <img alt="list" src=".github/list.jpg" width="30%">
-  <img alt="filter" src=".github/filter.jpg" width="30%"> 
-</p>
-<p>
   <img alt="detail" src=".github/details.jpg" width="30%">
 </p>
 
