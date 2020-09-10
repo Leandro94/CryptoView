@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.model
+package com.leandro.cryptoview.model.entity
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,5 +20,8 @@ data class BRL(
     var percent_change_24h: String? = null,
 
     @SerializedName("percent_change_7d")
-    var percent_change_7d: String? = null
+    var percent_change_7d: String? = null,
+
+    @SerializedName("market_cap")
+    var market_cap: String? = null
 )

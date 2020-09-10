@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.leandro.cryptoview.view.DetailFragment"
-        android:label="Detalhes">
+        android:label="Avançado">
         <action
             android:id="@+id/action_detailFragment_to_listFragment"
             app:destination="@id/listFragment" />

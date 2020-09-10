@@ -1,4 +1,4 @@
-package com.leandro.cryptoview.model
+package com.leandro.cryptoview.model.entity
 
 import com.google.gson.annotations.SerializedName
 

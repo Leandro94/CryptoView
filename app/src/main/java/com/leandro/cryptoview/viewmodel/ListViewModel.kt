@@ -1,13 +1,12 @@
 package com.leandro.cryptoview.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.model.entity.Coin
 import com.leandro.cryptoview.service.CoinsApiService
-import com.leandro.cryptoview.model.CryptoResult
-import com.leandro.cryptoview.repository.CoinRepository
+import com.leandro.cryptoview.model.entity.CryptoResult
+import com.leandro.cryptoview.model.repository.CoinRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -19,16 +18,14 @@ class ListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
 
     private val coinsApiService = CoinsApiService()
     private val disposable = CompositeDisposable()
-    var connectionSuccess = true
 
     val coins = MutableLiveData<List<Coin>>()
 
     val coinsLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    fun refresh(): Boolean {
+    fun refresh() {
         getFromRemote()
-        return connectionSuccess
     }
 
     private fun getFromRemote() {
@@ -41,16 +38,17 @@ class ListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
 
                     override fun onSuccess(coinsList: CryptoResult) {
                         coinsList.data?.let { storeCoinsLocally(it) }
-                            Log.d("XXX", "Recuperando dados na API...")
-                        connectionSuccess = true
+                        coinsLoadError.let {
+                            if(it.value==true){
+                                coinsLoadError.value = false
+                            }
+                        }
                     }
                     override fun onError(e: Throwable) {
                         coinsLoadError.value = true
                         loading.value = false
                         getFromDatabse()
-                        connectionSuccess = false
                     }
-
                 })
         )
 
@@ -60,12 +58,10 @@ class ListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
         loading.value = true
         val list = coinRepository.getAll()
         coinsRetrieved(list)
-        Log.d("XXX", "Recuperando dados no BD...")
     }
 
     private fun coinsRetrieved(coinsList: List<Coin>) {
         coins.value = coinsList
-        coinsLoadError.value = false
         loading.value = false
     }
 
@@ -79,6 +75,9 @@ class ListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
                 list[j].percent_change_1h = list[j].quote?.brl?.percent_change_1h
                 list[j].percent_change_24h = list[j].quote?.brl?.percent_change_24h
                 list[j].percent_change_7d = list[j].quote?.brl?.percent_change_7d
+                list[j].volume_24h = list[j].quote?.brl?.volume_24h
+                list[j].market_cap = list[j].quote?.brl?.market_cap
+                list[j].circulating_supply = list[j].circulating_supply
                 j++
             }
 

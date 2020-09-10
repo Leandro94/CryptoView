@@ -1,7 +1,6 @@
 package com.leandro.cryptoview.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +11,9 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.leandro.cryptoview.R
-import com.leandro.cryptoview.service.AppDatabase
-import com.leandro.cryptoview.repository.CoinRepository
+import com.leandro.cryptoview.model.AppDatabase
+import com.leandro.cryptoview.model.repository.CoinRepository
 import com.leandro.cryptoview.utils.IMAGE_URL
 import com.leandro.cryptoview.utils.formatterToDecimal
 import com.leandro.cryptoview.utils.getProgressDrawable
@@ -66,6 +64,14 @@ class DetailFragment : Fragment() {
 
                 txt_d_coinSymbol.text = coin.symbol
                 txt_d_coinName.text = coin.name
+                txt_d_priceBRL.text =
+                    coin.price?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                txt_valueVolume24h.text =
+                    coin.volume_24h?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                txt_valueMarketCap.text =
+                    coin.market_cap?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                txt_valueCirculatingSupply.text =
+                    coin.circulating_supply?.let { it1 -> formatterToDecimal(it1, 2).toString() }
                 context?.let { imv_d_coin.loadImage(IMAGE_URL+coin.id+".png", getProgressDrawable(it)) }
             }
         })

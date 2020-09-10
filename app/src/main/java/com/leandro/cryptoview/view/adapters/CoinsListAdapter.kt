@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro.cryptoview.R
-import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.model.entity.Coin
 import com.leandro.cryptoview.utils.IMAGE_URL
 import com.leandro.cryptoview.utils.formatterToDecimal
 import com.leandro.cryptoview.utils.getProgressDrawable

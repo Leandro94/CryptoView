@@ -1,9 +1,9 @@
-package com.leandro.cryptoview.service
+package com.leandro.cryptoview.model.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.model.entity.Coin
 
 @Dao
 interface CoinDao {

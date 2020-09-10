@@ -16,6 +16,96 @@
         tools:context=".view.DetailFragment">
 
         <TextView
+            android:id="@+id/txt_d_priceBRL"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="0.00"
+            app:layout_constraintStart_toEndOf="@+id/txt_d_real"
+            app:layout_constraintTop_toBottomOf="@+id/txt_d_coinSymbol" />
+
+        <TextView
+            android:id="@+id/txt_d_real"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:text="R$"
+            app:layout_constraintStart_toEndOf="@+id/imv_d_coin"
+            app:layout_constraintTop_toBottomOf="@+id/txt_d_coinSymbol" />
+
+        <TextView
+            android:id="@+id/txt_valueVolume24h"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="0.00"
+            app:layout_constraintStart_toEndOf="@+id/txt_volume24h"
+            app:layout_constraintTop_toBottomOf="@+id/txt_d_priceBRL" />
+
+        <TextView
+            android:id="@+id/txt_valueMarketCap"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="0.00"
+            app:layout_constraintStart_toEndOf="@+id/txt_marketCap2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_valueVolume24h" />
+
+        <TextView
+            android:id="@+id/txt_valueCirculatingSupply"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="0.00"
+            app:layout_constraintStart_toEndOf="@+id/txt_circulatingSupply"
+            app:layout_constraintTop_toBottomOf="@+id/txt_valueMarketCap" />
+
+        <TextView
+            android:id="@+id/txt_volume24h"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:text="Volume 24 Horas:"
+            app:layout_constraintStart_toEndOf="@+id/imv_d_coin"
+            app:layout_constraintTop_toBottomOf="@+id/txt_d_real" />
+
+        <TextView
+            android:id="@+id/txt_circulatingSupply"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:text="Quantidade em circulação:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_marketCap2" />
+
+        <TextView
+            android:id="@+id/txt_marketCap2"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:text="Capitalização de mercado:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_volume24h" />
+
+        <TextView
             android:id="@+id/txt_d_coinName"
             style="@style/Title"
             android:layout_width="wrap_content"
@@ -42,7 +132,8 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_alignParentTop="true"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +155,15 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_margin="8dp"
+            android:layout_height="400dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_valueCirculatingSupply" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,10 +1,11 @@
-package com.leandro.cryptoview.service
+package com.leandro.cryptoview.model
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.leandro.cryptoview.model.Coin
+import com.leandro.cryptoview.model.dao.CoinDao
+import com.leandro.cryptoview.model.entity.Coin
 import com.leandro.cryptoview.utils.DATABASE_NAME
 
 @Database(entities = arrayOf(Coin::class), version = 1)

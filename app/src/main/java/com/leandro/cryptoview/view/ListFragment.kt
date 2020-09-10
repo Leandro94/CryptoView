@@ -1,26 +1,27 @@
 package com.leandro.cryptoview.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro.cryptoview.R
 import com.leandro.cryptoview.view.adapters.CoinsListAdapter
-import com.leandro.cryptoview.service.AppDatabase
-import com.leandro.cryptoview.model.Coin
-import com.leandro.cryptoview.repository.CoinRepository
+import com.leandro.cryptoview.model.AppDatabase
+import com.leandro.cryptoview.model.entity.Coin
+import com.leandro.cryptoview.model.repository.CoinRepository
 import com.leandro.cryptoview.viewmodel.ListViewModel
 import com.leandro.cryptoview.viewmodel.ListViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class ListFragment : Fragment() {
 
+    //private val viewModel: ListViewModel by viewModel()
     private lateinit var viewModel: ListViewModel
     private val coinsListAdapter = CoinsListAdapter(arrayListOf())
     lateinit var db: AppDatabase
@@ -97,7 +98,6 @@ class ListFragment : Fragment() {
 
     fun refreshList() {
         coinsListRecycler.visibility = View.GONE
-        txt_ListError.visibility = View.GONE
         progressLoadList.visibility = View.VISIBLE
 
         viewModel.refresh()
@@ -115,14 +115,19 @@ class ListFragment : Fragment() {
         })
         viewModel.coinsLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
-                txt_ListError.visibility = if (it) View.VISIBLE else View.GONE
+                if(it){
+                    Toast.makeText(activity, "Não foi possível conectar ao serviço. Dados da última conexão foram utilizados!", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(activity, "Dados atualizados com sucesso.", Toast.LENGTH_SHORT).show()
+                }
             }
+
         })
         viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             isLoading?.let {
                 progressLoadList.visibility = if (it) View.VISIBLE else View.GONE
                 if (it) {
-                    txt_ListError.visibility = View.GONE
                     coinsListRecycler.visibility = View.GONE
                 }
             }

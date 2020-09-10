@@ -1,6 +1,6 @@
 package com.leandro.cryptoview.service
 
-import com.leandro.cryptoview.model.CryptoResult
+import com.leandro.cryptoview.model.entity.CryptoResult
 import io.reactivex.Single
 import retrofit2.http.GET
 
