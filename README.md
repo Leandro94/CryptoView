@@ -7,7 +7,7 @@
   <img alt="list" src=".github/list.jpg" width="30%">
   <img alt="filter" src=".github/filter.jpg" width="30%"> 
 </p>
-<p align="left">
+<p>
   <img alt="detail" src=".github/details.jpg" width="30%">
 </p>
 
