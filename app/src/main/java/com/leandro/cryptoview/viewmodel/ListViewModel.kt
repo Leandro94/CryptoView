@@ -7,6 +7,7 @@ import com.leandro.cryptoview.model.entity.Coin
 import com.leandro.cryptoview.service.CoinsApiService
 import com.leandro.cryptoview.model.entity.CryptoResult
 import com.leandro.cryptoview.model.repository.CoinRepository
+import com.leandro.cryptoview.utils.formatterToDecimal
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -71,13 +72,13 @@ class ListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
             var j = 0
 
             while (j < list.size) {
-                list[j].price = list[j].quote?.brl?.price
-                list[j].percent_change_1h = list[j].quote?.brl?.percent_change_1h
-                list[j].percent_change_24h = list[j].quote?.brl?.percent_change_24h
-                list[j].percent_change_7d = list[j].quote?.brl?.percent_change_7d
-                list[j].volume_24h = list[j].quote?.brl?.volume_24h
-                list[j].market_cap = list[j].quote?.brl?.market_cap
-                list[j].circulating_supply = list[j].circulating_supply
+                list[j].price = formatterToDecimal(list[j].quote?.brl?.price.toString(),2).toDouble()
+                list[j].percent_change_1h = formatterToDecimal(list[j].quote?.brl?.percent_change_1h.toString(),2).toDouble()
+                list[j].percent_change_24h = formatterToDecimal(list[j].quote?.brl?.percent_change_24h.toString(),2).toDouble()
+                list[j].percent_change_7d = formatterToDecimal(list[j].quote?.brl?.percent_change_7d.toString(),2).toDouble()
+                list[j].volume_24h = formatterToDecimal(list[j].quote?.brl?.volume_24h.toString(),2).toString()
+                list[j].market_cap = formatterToDecimal(list[j].quote?.brl?.market_cap.toString(),2).toString()
+                list[j].circulating_supply = formatterToDecimal(list[j].circulating_supply.toString(), 2).toString()
                 j++
             }
 

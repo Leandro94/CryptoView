@@ -79,7 +79,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="15dp"
-            android:text="Volume 24 Horas:"
+            android:text="Volume (24h):"
             app:layout_constraintStart_toEndOf="@+id/imv_d_coin"
             app:layout_constraintTop_toBottomOf="@+id/txt_d_real" />
 
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="15dp"
-            android:text="Quantidade em circulação:"
+            android:text="Fornecimento circulante:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_marketCap2" />
 

@@ -65,13 +65,13 @@ class DetailFragment : Fragment() {
                 txt_d_coinSymbol.text = coin.symbol
                 txt_d_coinName.text = coin.name
                 txt_d_priceBRL.text =
-                    coin.price?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                    coin.price.toString()
                 txt_valueVolume24h.text =
-                    coin.volume_24h?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                    coin.volume_24h.toString()
                 txt_valueMarketCap.text =
-                    coin.market_cap?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                    coin.market_cap.toString()
                 txt_valueCirculatingSupply.text =
-                    coin.circulating_supply?.let { it1 -> formatterToDecimal(it1, 2).toString() }
+                    coin.circulating_supply.toString()
                 context?.let { imv_d_coin.loadImage(IMAGE_URL+coin.id+".png", getProgressDrawable(it)) }
             }
         })
@@ -79,7 +79,7 @@ class DetailFragment : Fragment() {
     }
     private fun configBarData(){
         val barDataSet = BarDataSet(setChartData(), "data")
-        barDataSet.setColor(getResources().getColor(R.color.colorBarChart))
+        barDataSet.setColor(getResources().getColor(R.color.textColor))
         barDataSet.valueTextSize = 16f
         barDataSet.valueTextColor = getResources().getColor(R.color.colorWhite)
 

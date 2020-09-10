@@ -1,184 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="#00FFFFFF">
-
-    <androidx.cardview.widget.CardView
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="coin"
+            type="com.leandro.cryptoview.model.entity.Coin" />
+        <variable
+            name="listener"
+            type="com.leandro.cryptoview.view.adapters.CoinClickListener" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
-        app:cardBackgroundColor="#9C575454"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:onClick="@{listener::onCoinClicked}">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:background="#00FFFFFF"
-            android:orientation="horizontal">
+            app:cardBackgroundColor="#9C575454"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imv_coinIcon"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginRight="4dp"
-                android:contentDescription="TODO"
-             />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginLeft="8dp"
-                android:background="#00FFFFFF">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#00FFFFFF"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/coinId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@{String.valueOf(coin.coin_id)}"/>
 
                 <ImageView
-                    android:id="@+id/imv_situation24h"
-                    android:layout_width="25dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_percentSymbol24h"
-                    app:srcCompat="@drawable/ic_trending_up_green_24" />
+                    android:id="@+id/imv_coinIcon"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_marginRight="4dp" />
 
-                <TextView
-                    android:id="@+id/txt_percentSymbol24h"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="%"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_value24h" />
-
-                <TextView
-                    android:id="@+id/txt_value24h"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
                     android:layout_marginLeft="8dp"
-                    android:text="0.00"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_24H" />
+                    android:background="#00FFFFFF">
 
-                <TextView
-                    android:id="@+id/txt_24H"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:text="24H"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imv_situation" />
+                    <ImageView
+                        android:id="@+id/imv_situation24h"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_percentSymbol24h"
+                        app:srcCompat="@drawable/ic_trending_up_green_24" />
 
-                <TextView
-                    android:id="@+id/txt_1H"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1H"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_percentSymbol24h"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="%"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_value24h" />
 
-                <TextView
-                    android:id="@+id/txt_coinSymbol"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BTC"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_value24h"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@{coin.percent_change_24h.toString()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_24H" />
 
-                <TextView
-                    android:id="@+id/txt_dividerItem"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="|"
-                    app:layout_constraintStart_toEndOf="@+id/txt_coinSymbol"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_24H"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:text="24h"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imv_situation" />
 
-                <TextView
-                    android:id="@+id/txt_coinName"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Bitcoin"
-                    app:layout_constraintStart_toEndOf="@+id/txt_dividerItem"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txt_1H"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1h"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/txt_real"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="R$"
-                    app:layout_constraintBottom_toTopOf="@+id/imv_situation"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_coinSymbol" />
+                    <TextView
+                        android:id="@+id/txt_coinSymbol"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{coin.symbol}"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txt_priceBRL"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="0.00"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_value1h"
-                    app:layout_constraintStart_toEndOf="@+id/txt_real"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_coinName"
-                    app:layout_constraintVertical_bias="0.458" />
+                    <TextView
+                        android:id="@+id/txt_dividerItem"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="|"
+                        app:layout_constraintStart_toEndOf="@+id/txt_coinSymbol"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txt_percentSymbol"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="%"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_value1h" />
+                    <TextView
+                        android:id="@+id/txt_coinName"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@{coin.name}"
+                        app:layout_constraintStart_toEndOf="@+id/txt_dividerItem"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txt_value1h"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="0.00"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_1H" />
+                    <TextView
+                        android:id="@+id/txt_real"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:text="R$"
+                        app:layout_constraintBottom_toTopOf="@+id/imv_situation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_coinSymbol" />
 
-                <ImageView
-                    android:id="@+id/imv_situation"
-                    android:layout_width="25dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txt_percentSymbol"
-                    app:srcCompat="@drawable/ic_trending_up_green_24" />
+                    <TextView
+                        android:id="@+id/txt_priceBRL"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@{coin.price.toString()}"
+                        app:layout_constraintBottom_toTopOf="@+id/txt_value1h"
+                        app:layout_constraintStart_toEndOf="@+id/txt_real"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_coinName"
+                        app:layout_constraintVertical_bias="0.458" />
+
+                    <TextView
+                        android:id="@+id/txt_percentSymbol"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="%"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_value1h" />
+
+                    <TextView
+                        android:id="@+id/txt_value1h"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="@{coin.percent_change_1h.toString()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_1H" />
+
+                    <ImageView
+                        android:id="@+id/imv_situation"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_percentSymbol"
+                        app:srcCompat="@drawable/ic_trending_up_green_24" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

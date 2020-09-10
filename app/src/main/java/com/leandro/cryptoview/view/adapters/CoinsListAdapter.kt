@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro.cryptoview.R
+import com.leandro.cryptoview.databinding.ItemCoinBinding
 import com.leandro.cryptoview.model.entity.Coin
 import com.leandro.cryptoview.utils.IMAGE_URL
-import com.leandro.cryptoview.utils.formatterToDecimal
 import com.leandro.cryptoview.utils.getProgressDrawable
 import com.leandro.cryptoview.utils.loadImage
 import com.leandro.cryptoview.view.ListFragmentDirections
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.item_coin.view.*
 import java.lang.Exception
 
 class CoinsListAdapter(val coinList: ArrayList<Coin>) :
-    RecyclerView.Adapter<CoinsListAdapter.CoinViewHolder>() {
+    RecyclerView.Adapter<CoinsListAdapter.CoinViewHolder>(), CoinClickListener {
 
     fun updateCoinList(coins: List<Coin>) {
         coinList.clear()
@@ -29,50 +30,40 @@ class CoinsListAdapter(val coinList: ArrayList<Coin>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_coin, parent, false)
+
+        val view =  DataBindingUtil.inflate<ItemCoinBinding>(inflater, R.layout.item_coin, parent, false)
         return CoinViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
-        holder.view.imv_coinIcon.loadImage(IMAGE_URL + coinList[position].id
-                + ".png", getProgressDrawable(holder.view.imv_coinIcon.context))
-        holder.view.txt_coinName.text = coinList[position].name
-        holder.view.txt_coinSymbol.text = coinList[position].symbol
+        formatterStyle(coinList[position].percent_change_24h.toString(),holder.view.txtValue24h,
+            holder.view.txtPercentSymbol24h,
+            holder.view.imvSituation24h)
 
-        holder.view.txt_value1h.text = coinList[position].percent_change_1h?.let {
-            formatterToDecimal(it,
-                2).toString()
-        }
-        holder.view.txt_value24h.text = coinList[position].percent_change_24h?.let {
-            formatterToDecimal(it,
-                2).toString()
-        }
-        formatterStyle(holder.view.txt_value1h,
-            holder.view.txt_percentSymbol,
-            holder.view.imv_situation)
-        formatterStyle(holder.view.txt_value24h,
-            holder.view.txt_percentSymbol24h,
-            holder.view.imv_situation24h)
+        formatterStyle(coinList[position].percent_change_1h.toString(),holder.view.txtValue1h,
+            holder.view.txtPercentSymbol,
+            holder.view.imvSituation)
 
+        holder.view.imvCoinIcon.loadImage(IMAGE_URL + coinList[position].id + ".png",
+            getProgressDrawable(holder.view.imvCoinIcon.context))
 
-        holder.view.txt_priceBRL.text =
-            coinList[position].price?.let { formatterToDecimal(it, 2) }.toString()
-
-        holder.view.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToDetailFragment()
-            action.cryptocurrencyId = coinList[position].coin_id
-            Navigation.findNavController(it)
-                .navigate(action)
-        }
+        holder.view.coin = coinList[position]
+        holder.view.listener =  this
     }
-
-    fun formatterStyle(txt_valor: TextView, txt_percentSymbol: TextView, imv: ImageView) {
+    fun formatterStyle(string: String, txt_valor: TextView, txt_percentSymbol: TextView, imv: ImageView) {
         try {
-            if (txt_valor.text.toString().contains("-")) {
+            if (string.contains("-")) {
                 txt_valor.setTextColor(Color.parseColor("#FF0000"))
                 txt_percentSymbol.setTextColor(Color.parseColor("#FF0000"))
                 imv.setImageResource(R.drawable.ic_trending_down_red_24)
-            } else {
+
+            }
+            else if(string.toDouble()==0.00){
+                txt_valor.setTextColor(Color.parseColor("#C1C1C1"))
+                txt_percentSymbol.setTextColor(Color.parseColor("#C1C1C1"))
+                imv.setImageResource(R.drawable.ic_trending_flat_grey_24)
+            }
+            else {
                 txt_valor.setTextColor(Color.parseColor("#32CD32"))
                 txt_percentSymbol.setTextColor(Color.parseColor("#32CD32"))
                 imv.setImageResource(R.drawable.ic_trending_up_green_24)
@@ -85,6 +76,14 @@ class CoinsListAdapter(val coinList: ArrayList<Coin>) :
 
     override fun getItemCount() = coinList.size
 
-    class CoinViewHolder(var view: View) : RecyclerView.ViewHolder(view)
+    class CoinViewHolder(var view: ItemCoinBinding) : RecyclerView.ViewHolder(view.root)
+
+    override fun onCoinClicked(v: View) {
+        val id = v.coinId.text.toString().toInt()
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment()
+        action.cryptocurrencyId = id
+        Navigation.findNavController(v)
+            .navigate(action)
+    }
 
 }
