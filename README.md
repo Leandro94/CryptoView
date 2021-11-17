@@ -2,8 +2,6 @@
    CryptoView
 </h1>
 
-![list](https://user-images.githubusercontent.com/7034344/142091188-3a6471f1-e269-4bb2-a763-4d58dcaa8ea3.jpg)
-
 ## ⚠️ Instruções
 
 Foi utilizado o plano básico da API CoinMarketCap, sendo necessário criar uma conta em https://coinmarketcap.com/api/ para obter a key que deve ser passada como Header nas requições.
