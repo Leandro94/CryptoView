@@ -2,11 +2,7 @@
    CryptoView
 </h1>
 
-<p align="center">
-  <img alt="splash" src=".github/splash.jpg" width="25%">
-  <img alt="list" src=".github/list.jpg" width="25%">
-  <img alt="detail" src=".github/details.jpg" width="25%">
-</p>
+![list](https://user-images.githubusercontent.com/7034344/142091188-3a6471f1-e269-4bb2-a763-4d58dcaa8ea3.jpg)
 
 ## ⚠️ Instruções
 
